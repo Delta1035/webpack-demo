@@ -67,6 +67,7 @@ module.exports = {
                         },
                     }
                 ],
+                // 解决webpack5自带的资源处理模块和url-loader，file-load之间冲突
                 type: 'javascript/auto'
             },
             // {
