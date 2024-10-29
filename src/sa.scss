@@ -1,0 +1,9 @@
+$color : red;
+
+.sass-container {
+    width: 100px;
+    height: 100px;
+    border: 10px solid $color;
+    // background-color: $color;
+    background-image: url('./public/wx.png');
+}
