@@ -1,9 +1,11 @@
 const { resolve, join } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const rawLoader = require('./loaders/raw-loader');
+const { options } = require('less');
 module.exports = {
     devtool: false,
-    mode: 'development',
+    // mode: 'development',
+    mode: 'none',
     entry: './src/index.js',
     output: {
         path: resolve(__dirname, 'dist'),
@@ -22,6 +24,26 @@ module.exports = {
     },
     module: {
         rules: [
+            {
+                test: /\.jsx?$/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: [
+                                '@babel/preset-env',// 转换js语法
+                                '@babel/preset-react'// 转换jax语法
+                            ],
+                            // 预设是插件的集合，很多插件合在一起就是一个预设
+                            plugins: [
+                                [
+                                    '@babel/plugin-proposal-decorators', { legacy: true }
+                                ]
+                            ]
+                        }
+                    }
+                ]
+            },
             {
                 test: /\.txt$/,
                 // use: 'raw-loader'
